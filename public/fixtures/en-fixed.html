@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nakhla — spaces for living</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f4f1e8;
+        color: #344533;
+        font-family: Arial, sans-serif;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 22px 28px;
+        border-bottom: 1px solid #deded2;
+      }
+      header b {
+        font-family: Georgia, serif;
+        font-size: 22px;
+        font-weight: 400;
+      }
+      nav {
+        font-size: 10px;
+        color: #606b55;
+      }
+      main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 32px 28px;
+      }
+      h1 {
+        font-family: Georgia, Arial, serif;
+        font-weight: 400;
+        font-size: 34px;
+        line-height: 1.15;
+        margin: 10px 0 14px;
+      }
+      p {
+        font-size: 12px;
+        line-height: 1.7;
+        color: #606b55;
+      }
+      .label {
+        font-size: 8px;
+        letter-spacing: 0.15em;
+      }
+      .action {
+        display: inline-block;
+        background: #3c513d;
+        color: white;
+        font-size: 9px;
+        padding: 10px 14px;
+        margin-top: 10px;
+      }
+      img,
+      .missing {
+        width: 100%;
+        height: 195px;
+        object-fit: cover;
+      }
+      .missing {
+        border: 1px dashed #c7ac95;
+        background: #eae5d9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #80664e;
+      }
+      .missing span {
+        font-size: 32px;
+      }
+      .missing p {
+        margin: 8px 0;
+        font-size: 10px;
+      }
+      .missing small {
+        font-size: 8px;
+      }
+      footer {
+        padding: 12px 28px;
+        font-size: 8px;
+        color: #606b55;
+      }
+      @media (max-width: 420px) {
+        main {
+          grid-template-columns: 1fr;
+          padding: 24px;
+          gap: 20px;
+        }
+        h1 {
+          font-size: 32px;
+        }
+        img,
+        .missing {
+          height: 160px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <b>nakhla.</b>
+      <nav>Spaces · Studio · Contact</nav>
+    </header>
+    <main>
+      <div>
+        <span class="label">A CONSIDERED WAY OF LIVING</span>
+        <h1>Spaces for living.</h1>
+        <p>Quiet design. Considered details. Room to be you.</p>
+        <span class="action">Explore our spaces ↗</span>
+      </div>
+      <img src="studio.svg" alt="Illustrated studio interior with olive sofa and sunlit window" />
+    </main>
+    <footer>RIYADH / ILLUSTRATIVE DEMO</footer>
+  </body>
+</html>

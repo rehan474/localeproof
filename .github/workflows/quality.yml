@@ -1,0 +1,47 @@
+name: Quality checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: localeproof
+          POSTGRES_PASSWORD: test-only-password
+          POSTGRES_DB: localeproof_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U localeproof"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://localeproof:test-only-password@localhost:5432/localeproof_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-fund --no-audit
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:integration
+      - run: npm run build
+      - run: npm run test:production
+      - run: npm audit --omit=dev --audit-level=high
+      - name: Audit built server dependencies
+        working-directory: .output/server
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          npm audit --omit=dev --audit-level=high
+      - name: Review build tooling advisories
+        run: npm run audit:tooling
