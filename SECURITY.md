@@ -38,6 +38,16 @@ transitive tooling dependencies. No patched versions are listed upstream:
 - [braces: recursive pattern denial of service](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
 - [node-forge: RSA signature verification](https://github.com/advisories/GHSA-86w9-cpqp-85rv)
 
-The CI audit intentionally remains blocking. Do not treat this milestone as a
-production security sign-off. Recheck upstream patches before deployment; do not
-silence the audit or downgrade the framework merely to hide these findings.
+Nuxt is a development dependency: production runs the built Node server, not the
+Nuxt CLI. Neither package is present in the inspected server artifact. The worker
+uses Playwright, PostgreSQL and the network validation library without Nuxt.
+
+CI runs strict high-severity audits on both application/worker production
+dependencies and the built server dependency manifest. These audits have no
+exceptions. The full tooling audit reports the two exact advisories above as
+visible warnings until **2026-11-21**. It fails for any new advisory, critical
+severity, audit service error, expired review, or detected inclusion of either
+package in the server output. This accepts a temporary build-environment risk;
+it does not claim the dependencies are patched. Builds must use trusted source,
+never untrusted glob patterns or development HTTPS certificates as a production
+security boundary. Reassess and remove the exceptions when upstream fixes exist.
