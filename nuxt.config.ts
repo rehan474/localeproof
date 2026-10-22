@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     },
   },
-  nitro: { preset: 'node-server', externals: { external: ['pg'] } },
+  nitro: { preset: process.env.VERCEL ? 'vercel' : 'node-server', externals: { external: ['pg'] } },
   routeRules: {
     '/api/**': { headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } },
   },
