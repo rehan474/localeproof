@@ -14,7 +14,12 @@ export interface Finding {
   url: string
   change: 'new' | 'existing' | 'resolved'
 }
-export interface PagePair { id: string; name: string; en: string; ar: string }
+export interface PagePair {
+  id: string
+  name: string
+  en: string
+  ar: string
+}
 export interface PageEvidence {
   locale: Locale
   viewport: Viewport
@@ -36,5 +41,17 @@ export interface ScanReport {
   resolved: Finding[]
   note: string
 }
-export interface ScanSummary { id: string; project_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; created_at: string; name: string }
-export interface ScanDetail { id: string; project_id: string; status: ScanSummary['status']; error: string | null; report: ScanReport | null }
+export interface ScanSummary {
+  id: string
+  project_id: string
+  status: 'queued' | 'running' | 'completed' | 'failed'
+  created_at: string
+  name: string
+}
+export interface ScanDetail {
+  id: string
+  project_id: string
+  status: ScanSummary['status']
+  error: string | null
+  report: ScanReport | null
+}

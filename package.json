@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.12" },
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
     "dev": "nuxt dev --host 127.0.0.1",
     "build": "nuxt build",
@@ -11,13 +13,26 @@
     "test": "node --test tests/*.test.mjs",
     "db:migrate": "node --env-file=.env scripts/migrate.mjs",
     "worker": "node --env-file=.env scripts/worker.mjs",
-    "browser:install": "npx playwright-core install chromium"
+    "browser:install": "npx playwright-core install chromium",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test:integration": "node --test tests/integration/*.test.mjs"
   },
   "dependencies": {
-    "nuxt": "3.21.11",
-    "vue": "3.5.43",
     "gsap": "3.15.0",
+    "ipaddr.js": "2.3.0",
+    "nuxt": "4.6.2",
+    "pg": "8.16.3",
     "playwright-core": "1.64.0",
-    "ipaddr.js": "1.9.1"
+    "vue": "3.5.44"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.10",
+    "@types/pg": "8.15.6",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "vue-tsc": "3.1.1"
   }
 }
